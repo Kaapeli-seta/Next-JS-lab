@@ -1,4 +1,5 @@
 import { fetchAllMedia } from "@/models/mediaModel";
+import Image from "next/image";
 const MediaList = async () => {
   const mediaList = await fetchAllMedia();
 
@@ -15,6 +16,13 @@ const MediaList = async () => {
             key={index}
             className="flex flex-col items-center transition p-4 shadow-2xl shadow-sd-drop rounded-md bg-inherit hover:scale-110 hover:cursor-grab active:cursor-grabbing text-inherit "
           >
+            <Image
+              src={item.thumbnail}
+              alt={item.title}
+              width={320}
+              height={320}
+              className="h-[320px] w-[320px] object-cover"
+            ></Image>
             <h3 className="text-lg font-bold self-start">{item.title}</h3>
             <p>Description: {item.description}</p>
             <p>Date: {new Date(item.created_at).toLocaleDateString("fi-FI")}</p>
